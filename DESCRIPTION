@@ -12,3 +12,4 @@ URL: https://github.com/ManuelSpinola/crhexgrids
 BugReports: https://github.com/ManuelSpinola/crhexgrids/issues
 Depends: 
     R (>= 2.10)
+RoxygenNote: 7.2.3
