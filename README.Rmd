@@ -1,4 +1,5 @@
 ---
+title: "crhexgrids: hierarchical hexagonal geospatial grids for Costa Rica"
 output: github_document
 ---
 
@@ -13,12 +14,14 @@ knitr::opts_chunk$set(
 )
 ```
 
-# crhexgrids
+# crhexgrids <img src="man/figures/logo.png" align="right" height="139" />
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of crhexgrids is to ...
+The goal of crhexgrids is to provides a hierarchical geospatial hexagonal grid indexing system for Costa Rica
+
+Hexagonal grid resolution are 5, 6, 7, 8 y 9 (based in [H3](https://h3geo.org))
 
 ## Installation
 
@@ -31,25 +34,61 @@ devtools::install_github("ManuelSpinola/crhexgrids")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example which shows you how to use crhexgrids:
 
-```{r example}
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(sf)
 library(crhexgrids)
-## basic example code
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
 
-```{r cars}
-summary(cars)
+```{r}
+#| fig-cap: "Figura 1. Hexagonal grid of resolution 5 for Costa Rica."
+ggplot(cr_hex_grid_res_5) +
+  geom_sf(fill = "dodgerblue3", color = "gray") +
+  theme_minimal()
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
+<br>
 
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
+```{r}
+#| fig-cap: "Figura 2. Hexagonal grid of resolution 6 for Costa Rica."
+ggplot(cr_hex_grid_res_6) +
+  geom_sf(fill = "dodgerblue3", color = "gray") +
+  theme_minimal()
 ```
 
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
+<br>
+
+```{r}
+#| fig-cap: "Figura 3. Hexagonal grid of resolution 7 for Costa Rica."
+ggplot(cr_hex_grid_res_7) +
+  geom_sf(fill = "dodgerblue3", color = "gray") +
+  theme_minimal()
+```
+
+<br>
+
+
+```{r}
+#| echo: false
+#| fig-cap: "Figura 4. Hierarchical hexagonal grids of resolution 5, 6, 7, 8. Every hexagonal cell has seven child cells below it in this hierarchy.  "
+ggplot() +
+  theme_minimal() +
+  geom_sf(data = cr_hex_grid_res_5, fill = NA, color = "red", linewidth = 0.8, alpha = 0.2) +
+  geom_sf(data = cr_hex_grid_res_6, fill = NA, color = "blue", linewidth = 0.8) +
+  geom_sf(data = cr_hex_grid_res_7, fill = NA, color = "black", linewidth = 0.4) +
+  geom_sf(data = cr_hex_grid_res_8, fill = NA, color = "green", linewidth = 0.4) +
+  coord_sf(xlim = c(-84.35, -84.10), ylim = c(10, 10.20))
+```
+
+
+
+
+
+
+
+
+
+
